@@ -59,3 +59,22 @@ CREATE TABLE PROPIETARIO(
     CONSTRAINTS propietario_rfc_uk UNIQUE (rfc),
     CONSTRAINTS propietario_curp_uk UNIQUE(curp)
 );
+
+
+
+-- 2 tablas relacionadas con constraints --
+-- 1. Estudiante -  comprobante
+CREATE TABLE estudiante(
+    estudiante_id NUMERIC(10,0) NOT NULL,
+    ap_paterno varchar(30) NOT NULL,
+    ap_materno varchar(30) NOT NULL,
+    CONSTRAINT estudiante_id_pk PRIMARY KEY (estudiante_id)
+);
+CREATE TABLE comprobante(
+    comprobante_id numeric(10,0) NOT NULL,
+    fecha_creado date not null,
+    semestre varchar(6) not null,
+    estudiante_id numeric(10,0) not null,
+    CONSTRAINT comprobante_id_pk PRIMARY KEY (comprobante_id),
+    CONSTRAINT estudante_id_fk FOREIGN KEY (estudiante_id) REFERENCES estudiante(estudiante_id) 
+);
